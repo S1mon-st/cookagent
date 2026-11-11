@@ -1,0 +1,37 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "cookagent-backend"
+version = "0.1.0"
+description = "AI 私厨管家 FastAPI + LangChain backend"
+requires-python = ">=3.11"
+dependencies = [
+  "fastapi>=0.118,<1",
+  "uvicorn[standard]>=0.35,<1",
+  "python-multipart>=0.0.20,<1",
+  "python-dotenv>=1.1,<2",
+  "pydantic>=2.11,<3",
+  "pydantic-settings>=2.10,<3",
+  "langchain>=1.0,<2",
+  "langchain-openai>=1.7,<2",
+  "langchain-tavily>=0.2.18,<1",
+  "pillow>=11.3,<13",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.4,<10",
+  "pytest-asyncio>=1.1,<2",
+  "httpx>=0.28,<1",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["app"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+
